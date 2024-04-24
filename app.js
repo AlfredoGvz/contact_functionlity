@@ -24,12 +24,12 @@ app.post("/api/send_email", async (request, response) => {
     subject: emailSubject,
   };
   try {
+    response.set("Access-Control-Allow-Origin", "*");
     emailjs
       .send(service_id, template_id, templateParams, public_key)
       .then(() => {
         response.status(201).send({ msg: "Message sent!" });
       });
-    // response.set("Access-Control-Allow-Origin", "*");
   } catch (error) {
     console.error(error);
     response.status(500).send({ error: "Internal Server Error" });
