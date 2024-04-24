@@ -15,6 +15,10 @@ app.use(
   })
 );
 const PORT = process.env.PORT;
+app.get("/api/new_get", async (request, response) => {
+  response.status(200).send({ msg: "Hello" });
+});
+
 app.post("/api/send_email", async (request, response) => {
   console.log(request.body);
   const { senderEmail, senderName, emailSubject, message } = request.body;
