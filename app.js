@@ -5,8 +5,15 @@ const app = express();
 require("dotenv").config({
   path: `.env`,
 });
-app.use(cors());
 app.use(express.json());
+app.use(
+  cors({
+    origin: [
+      "https://contact-functionlity.onrender.com",
+      "https://alfredo-galvez.netlify.app",
+    ],
+  })
+);
 const PORT = process.env.PORT;
 app.post("/api/send_email", async (request, response) => {
   console.log(request.body);
